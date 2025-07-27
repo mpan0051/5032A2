@@ -1,0 +1,711 @@
+/* ===== 老年人关爱中心 - 主样式文件 ===== */
+
+/* CSS自定义属性 (CSS Variables) */
+:root {
+  /* 主色调 */
+  --primary-color: #0d6efd;
+  --primary-hover: #0b5ed7;
+  --secondary-color: #6c757d;
+  --success-color: #198754;
+  --warning-color: #ffc107;
+  --danger-color: #dc3545;
+  --info-color: #0dcaf0;
+
+  /* 老年友好色彩 */
+  --elderly-blue: #4a90e2;
+  --elderly-green: #7ed321;
+  --elderly-orange: #f5a623;
+  --elderly-purple: #9013fe;
+
+  /* 中性色调 */
+  --gray-50: #f8f9fa;
+  --gray-100: #e9ecef;
+  --gray-200: #dee2e6;
+  --gray-300: #ced4da;
+  --gray-400: #adb5bd;
+  --gray-500: #6c757d;
+  --gray-600: #495057;
+  --gray-700: #343a40;
+  --gray-800: #212529;
+  --gray-900: #000000;
+
+  /* 字体大小 - 为老年人优化 */
+  --font-size-xs: 0.75rem;
+  --font-size-sm: 0.875rem;
+  --font-size-base: 1rem;
+  --font-size-lg: 1.125rem;
+  --font-size-xl: 1.25rem;
+  --font-size-xxl: 1.5rem;
+
+  /* 间距 */
+  --spacing-xs: 0.25rem;
+  --spacing-sm: 0.5rem;
+  --spacing-md: 1rem;
+  --spacing-lg: 1.5rem;
+  --spacing-xl: 2rem;
+  --spacing-xxl: 3rem;
+
+  /* 圆角 */
+  --border-radius-sm: 0.25rem;
+  --border-radius: 0.5rem;
+  --border-radius-lg: 0.75rem;
+  --border-radius-xl: 1rem;
+
+  /* 阴影 */
+  --shadow-sm: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+  --shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+  --shadow-lg: 0 1rem 3rem rgba(0, 0, 0, 0.175);
+
+  /* 过渡动画 */
+  --transition-fast: 0.15s ease-in-out;
+  --transition-base: 0.3s ease-in-out;
+  --transition-slow: 0.5s ease-in-out;
+}
+
+/* ===== 全局重置和基础样式 ===== */
+
+/* 基础重置 */
+* {
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 16px; /* 基础字体大小，便于rem计算 */
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family:
+    -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  font-size: var(--font-size-base);
+  line-height: 1.6;
+  color: var(--gray-700);
+  background-color: #ffffff;
+  margin: 0;
+  padding: 0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* 改善文本可读性 */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  line-height: 1.3;
+  margin-bottom: var(--spacing-md);
+  font-weight: 600;
+  color: var(--gray-800);
+}
+
+h1 {
+  font-size: 2.5rem;
+}
+h2 {
+  font-size: 2rem;
+}
+h3 {
+  font-size: 1.75rem;
+}
+h4 {
+  font-size: 1.5rem;
+}
+h5 {
+  font-size: 1.25rem;
+}
+h6 {
+  font-size: 1rem;
+}
+
+p {
+  margin-bottom: var(--spacing-md);
+  font-size: var(--font-size-lg);
+}
+
+/* 链接样式 */
+a {
+  color: var(--primary-color);
+  text-decoration: none;
+  transition: color var(--transition-base);
+}
+
+a:hover {
+  color: var(--primary-hover);
+  text-decoration: underline;
+}
+
+/* ===== 无障碍设计 ===== */
+
+/* 跳转到主内容链接 */
+.skip-link {
+  position: absolute;
+  top: -40px;
+  left: 6px;
+  background: var(--gray-900);
+  color: white;
+  padding: 8px;
+  text-decoration: none;
+  z-index: 1000;
+  border-radius: var(--border-radius);
+  font-weight: 600;
+  transition: top var(--transition-base);
+}
+
+.skip-link:focus {
+  top: 6px;
+  color: white;
+  text-decoration: none;
+}
+
+/* 焦点指示器 */
+*:focus {
+  outline: 2px solid var(--warning-color);
+  outline-offset: 2px;
+}
+
+/* 移除默认焦点样式，使用自定义样式 */
+button:focus,
+input:focus,
+select:focus,
+textarea:focus,
+.btn:focus {
+  outline: 2px solid var(--warning-color);
+  outline-offset: 2px;
+  box-shadow: 0 0 0 0.2rem rgba(255, 193, 7, 0.25);
+}
+
+/* ===== 按钮增强样式 ===== */
+
+.btn {
+  font-size: var(--font-size-base);
+  padding: 0.5rem 1rem;
+  border-radius: var(--border-radius);
+  border: 2px solid transparent;
+  font-weight: 600;
+  transition: all var(--transition-base);
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  min-height: 44px; /* 满足触摸目标的最小尺寸 */
+}
+
+.btn:hover {
+  transform: translateY(-1px);
+  box-shadow: var(--shadow);
+}
+
+.btn:active {
+  transform: translateY(0);
+}
+
+.btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none !important;
+}
+
+/* 大号按钮（老年友好） */
+.btn-lg {
+  font-size: var(--font-size-lg);
+  padding: 0.75rem 1.5rem;
+  min-height: 52px;
+}
+
+.btn-sm {
+  font-size: var(--font-size-sm);
+  padding: 0.375rem 0.75rem;
+  min-height: 36px;
+}
+
+/* ===== 表单控件增强 ===== */
+
+.form-control,
+.form-select {
+  font-size: var(--font-size-base);
+  padding: 0.75rem 1rem;
+  border: 2px solid var(--gray-300);
+  border-radius: var(--border-radius);
+  transition: all var(--transition-base);
+  min-height: 44px; /* 触摸友好 */
+}
+
+.form-control:focus,
+.form-select:focus {
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 0.2rem rgba(13, 110, 253, 0.25);
+}
+
+.form-control-lg {
+  font-size: var(--font-size-lg);
+  padding: 1rem 1.25rem;
+  min-height: 52px;
+}
+
+.form-label {
+  font-weight: 600;
+  margin-bottom: var(--spacing-sm);
+  font-size: var(--font-size-base);
+  color: var(--gray-700);
+}
+
+/* ===== 卡片组件增强 ===== */
+
+.card {
+  border: 1px solid var(--gray-200);
+  border-radius: var(--border-radius-lg);
+  box-shadow: var(--shadow-sm);
+  transition: all var(--transition-base);
+  overflow: hidden;
+}
+
+.card:hover {
+  box-shadow: var(--shadow);
+  transform: translateY(-2px);
+}
+
+.card-header {
+  background-color: var(--gray-50);
+  border-bottom: 1px solid var(--gray-200);
+  padding: 1rem 1.25rem;
+  font-weight: 600;
+}
+
+.card-body {
+  padding: 1.25rem;
+}
+
+.card-footer {
+  background-color: var(--gray-50);
+  border-top: 1px solid var(--gray-200);
+  padding: 1rem 1.25rem;
+}
+
+/* ===== 导航增强 ===== */
+
+.navbar {
+  box-shadow: var(--shadow-sm);
+  backdrop-filter: blur(10px);
+}
+
+.navbar-brand {
+  font-weight: 700;
+  font-size: var(--font-size-xl);
+}
+
+.nav-link {
+  font-weight: 500;
+  padding: 0.5rem 1rem;
+  transition: all var(--transition-base);
+  border-radius: var(--border-radius);
+  margin: 0 0.25rem;
+}
+
+.nav-link:hover {
+  background-color: rgba(13, 110, 253, 0.1);
+}
+
+.nav-link.active {
+  background-color: var(--primary-color);
+  color: white !important;
+}
+
+/* ===== 高对比度模式支持 ===== */
+
+@media (prefers-contrast: high) {
+  :root {
+    --primary-color: #0000ff;
+    --gray-300: #000000;
+    --gray-500: #000000;
+    --gray-700: #000000;
+  }
+
+  .card,
+  .form-control,
+  .form-select,
+  .btn {
+    border-width: 3px;
+  }
+
+  .btn:focus,
+  .form-control:focus,
+  .form-select:focus {
+    outline-width: 3px;
+  }
+}
+
+/* ===== 减少动画（用户偏好） ===== */
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  .btn:hover,
+  .card:hover {
+    transform: none;
+  }
+
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+/* ===== 深色模式支持 ===== */
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --gray-50: #212529;
+    --gray-100: #343a40;
+    --gray-200: #495057;
+    --gray-300: #6c757d;
+    --gray-700: #e9ecef;
+    --gray-800: #f8f9fa;
+  }
+
+  body {
+    background-color: var(--gray-900);
+    color: var(--gray-700);
+  }
+
+  .card {
+    background-color: var(--gray-800);
+    border-color: var(--gray-600);
+  }
+
+  .card-header,
+  .card-footer {
+    background-color: var(--gray-700);
+    border-color: var(--gray-600);
+  }
+}
+
+/* ===== 打印样式 ===== */
+
+@media print {
+  * {
+    background: white !important;
+    color: black !important;
+    box-shadow: none !important;
+    text-shadow: none !important;
+  }
+
+  .btn,
+  .navbar,
+  .footer,
+  .modal,
+  .alert {
+    display: none;
+  }
+
+  .card {
+    border: 1px solid black;
+    break-inside: avoid;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    break-after: avoid;
+  }
+
+  p,
+  li {
+    orphans: 3;
+    widows: 3;
+  }
+}
+
+/* ===== 响应式字体大小 ===== */
+
+@media (max-width: 768px) {
+  html {
+    font-size: 14px;
+  }
+
+  h1 {
+    font-size: 2rem;
+  }
+  h2 {
+    font-size: 1.75rem;
+  }
+  h3 {
+    font-size: 1.5rem;
+  }
+  h4 {
+    font-size: 1.25rem;
+  }
+  h5 {
+    font-size: 1.125rem;
+  }
+  h6 {
+    font-size: 1rem;
+  }
+
+  .btn-lg {
+    padding: 0.75rem 1.25rem;
+    font-size: var(--font-size-base);
+  }
+}
+
+@media (max-width: 576px) {
+  html {
+    font-size: 13px;
+  }
+
+  .container {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+}
+
+/* ===== 老年友好的特殊样式 ===== */
+
+/* 大号触摸目标 */
+.touch-friendly {
+  min-height: 48px;
+  min-width: 48px;
+  padding: 0.75rem;
+}
+
+/* 高对比度文本 */
+.high-contrast-text {
+  color: var(--gray-900);
+  font-weight: 600;
+}
+
+/* 易读的链接 */
+.readable-link {
+  color: var(--primary-color);
+  text-decoration: underline;
+  font-weight: 600;
+}
+
+.readable-link:hover {
+  background-color: var(--warning-color);
+  color: var(--gray-900);
+  text-decoration: none;
+  padding: 0.25rem;
+  border-radius: var(--border-radius-sm);
+}
+
+/* 错误状态增强 */
+.is-invalid {
+  border-color: var(--danger-color);
+  box-shadow: 0 0 0 0.2rem rgba(220, 53, 69, 0.25);
+}
+
+.invalid-feedback {
+  color: var(--danger-color);
+  font-weight: 600;
+  font-size: var(--font-size-sm);
+}
+
+/* 成功状态增强 */
+.is-valid {
+  border-color: var(--success-color);
+  box-shadow: 0 0 0 0.2rem rgba(25, 135, 84, 0.25);
+}
+
+.valid-feedback {
+  color: var(--success-color);
+  font-weight: 600;
+  font-size: var(--font-size-sm);
+}
+
+/* ===== 工具类 ===== */
+
+/* 间距工具 */
+.spacing-xs {
+  margin: var(--spacing-xs);
+}
+.spacing-sm {
+  margin: var(--spacing-sm);
+}
+.spacing-md {
+  margin: var(--spacing-md);
+}
+.spacing-lg {
+  margin: var(--spacing-lg);
+}
+.spacing-xl {
+  margin: var(--spacing-xl);
+}
+
+/* 文本工具 */
+.text-readable {
+  font-size: var(--font-size-lg);
+  line-height: 1.8;
+  color: var(--gray-800);
+}
+
+.text-emphasis {
+  font-weight: 600;
+  color: var(--gray-900);
+}
+
+/* 背景工具 */
+.bg-elderly-blue {
+  background-color: var(--elderly-blue);
+}
+.bg-elderly-green {
+  background-color: var(--elderly-green);
+}
+.bg-elderly-orange {
+  background-color: var(--elderly-orange);
+}
+.bg-elderly-purple {
+  background-color: var(--elderly-purple);
+}
+
+/* 边框工具 */
+.border-thick {
+  border-width: 3px;
+}
+.border-elderly {
+  border-color: var(--elderly-blue);
+}
+
+/* 阴影工具 */
+.shadow-elderly {
+  box-shadow: 0 0.5rem 1.5rem rgba(74, 144, 226, 0.2);
+}
+
+/* ===== 动画和过渡 ===== */
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateX(-100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+}
+
+.fade-in {
+  animation: fadeIn 0.6s ease-out;
+}
+
+.slide-in {
+  animation: slideIn 0.4s ease-out;
+}
+
+.pulse {
+  animation: pulse 2s infinite;
+}
+
+/* ===== 特殊组件样式 ===== */
+
+/* 加载指示器 */
+.loading-spinner {
+  display: inline-block;
+  width: 2rem;
+  height: 2rem;
+  border: 3px solid var(--gray-300);
+  border-top: 3px solid var(--primary-color);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/* 提示工具 */
+.tooltip-content {
+  background-color: var(--gray-900);
+  color: white;
+  padding: 0.5rem 0.75rem;
+  border-radius: var(--border-radius);
+  font-size: var(--font-size-sm);
+  font-weight: 500;
+  box-shadow: var(--shadow);
+}
+
+/* 评分星星 */
+.star-rating {
+  display: inline-flex;
+  gap: 0.25rem;
+}
+
+.star {
+  color: var(--gray-300);
+  transition: color var(--transition-base);
+  cursor: pointer;
+  font-size: 1.25rem;
+}
+
+.star.filled,
+.star:hover {
+  color: var(--warning-color);
+}
+
+/* 徽章增强 */
+.badge {
+  font-size: 0.875em;
+  font-weight: 600;
+  padding: 0.375rem 0.75rem;
+  border-radius: var(--border-radius);
+}
+
+/* ===== 滚动条样式 ===== */
+
+::-webkit-scrollbar {
+  width: 12px;
+  height: 12px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--gray-100);
+  border-radius: var(--border-radius);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--gray-400);
+  border-radius: var(--border-radius);
+  transition: background var(--transition-base);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--gray-500);
+}
+
+/* Firefox滚动条 */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--gray-400) var(--gray-100);
+}
